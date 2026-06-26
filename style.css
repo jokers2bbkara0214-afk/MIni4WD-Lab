@@ -188,3 +188,48 @@ body{
 .part-card p{
   margin:8px 0;
 }
+
+.add-button{
+  width:100%;
+  margin-top:12px;
+  padding:10px;
+  border:none;
+  border-radius:10px;
+  background:#2383ff;
+  color:white;
+  cursor:pointer;
+}
+
+.add-button:hover{
+  background:#58a6ff;
+}
+
+.machine-panel{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:20px;
+  margin-top:20px;
+}
+
+.machine-status{
+  background:rgba(13,27,42,.9);
+  border:1px solid rgba(88,166,255,.3);
+  border-radius:16px;
+  padding:20px;
+}
+
+.machine-status h4{
+  color:#58a6ff;
+  margin-bottom:16px;
+}
+
+.machine-status p{
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+
+@media(max-width:800px){
+  .machine-panel{
+    grid-template-columns:1fr;
+  }
+}
