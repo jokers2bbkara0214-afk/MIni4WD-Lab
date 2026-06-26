@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini4WD Lab</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <aside class="sidebar">
+      <h1>🏎 Mini4WD Lab</h1>
+
+      <button onclick="showPage('home')">ホーム</button>
+      <button onclick="showPage('parts')">パーツ図鑑</button>
+      <button onclick="showPage('machine')">マシン</button>
+      <button onclick="showPage('analysis')">分析</button>
+      <button>設定</button>
+    </aside>
+
+    <main class="main">
+      <h2>Mini4WD Lab</h2>
+
+      <section class="tabs">
+        <button onclick="showPage('home')">🏠 ホーム</button>
+        <button onclick="showPage('parts')">🔩 パーツ図鑑</button>
+        <button onclick="showPage('machine')">🏎 マシン</button>
+        <button onclick="showPage('analysis')">📊 分析</button>
+      </section>
+
+      <section id="home" class="page active">
+        <h3>ホーム</h3>
+        <p>マシンを登録して、パーツ性能を分析しよう。</p>
+      </section>
+
+      <section id="parts" class="page">
+        <h3>パーツ図鑑</h3>
+        <input id="searchInput" type="text" placeholder="パーツ名で検索">
+        <div id="partsList" class="parts-list"></div>
+      </section>
+
+      <section id="machine" class="page">
+        <h3>マシンビルダー</h3>
+        <div class="machine-image">🏎</div>
+      </section>
+
+      <section id="analysis" class="page">
+        <h3>分析</h3>
+        <p>ここにグラフを表示していく。</p>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

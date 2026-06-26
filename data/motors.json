@@ -1,0 +1,52 @@
+[
+  {
+    "id": "M001",
+    "name": "トルクチューン2",
+    "category": "モーター",
+    "weight": 4.8,
+    "speed": 70,
+    "acceleration": 85,
+    "corner": 80,
+    "battery": 80
+  },
+  {
+    "id": "M002",
+    "name": "レブチューン2",
+    "category": "モーター",
+    "weight": 4.8,
+    "speed": 88,
+    "acceleration": 62,
+    "corner": 70,
+    "battery": 70
+  },
+  {
+    "id": "M003",
+    "name": "アトミックチューン2",
+    "category": "モーター",
+    "weight": 4.8,
+    "speed": 78,
+    "acceleration": 78,
+    "corner": 78,
+    "battery": 76
+  },
+  {
+    "id": "M004",
+    "name": "ライトダッシュ",
+    "category": "モーター",
+    "weight": 4.8,
+    "speed": 84,
+    "acceleration": 76,
+    "corner": 72,
+    "battery": 68
+  },
+  {
+    "id": "M005",
+    "name": "ハイパーダッシュ3",
+    "category": "モーター",
+    "weight": 4.8,
+    "speed": 95,
+    "acceleration": 83,
+    "corner": 65,
+    "battery": 55
+  }
+]
