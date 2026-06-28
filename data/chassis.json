@@ -1,0 +1,32 @@
+[
+  {
+    "id": "C001",
+    "name": "VZシャーシ",
+    "category": "シャーシ",
+    "weight": 13.1,
+    "speed": 80,
+    "acceleration": 82,
+    "corner": 86,
+    "battery": 75
+  },
+  {
+    "id": "C002",
+    "name": "MAシャーシ",
+    "category": "シャーシ",
+    "weight": 14.5,
+    "speed": 76,
+    "acceleration": 78,
+    "corner": 88,
+    "battery": 78
+  },
+  {
+    "id": "C003",
+    "name": "FM-Aシャーシ",
+    "category": "シャーシ",
+    "weight": 15.0,
+    "speed": 74,
+    "acceleration": 76,
+    "corner": 90,
+    "battery": 76
+  }
+]

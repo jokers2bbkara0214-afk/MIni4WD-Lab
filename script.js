@@ -1,5 +1,7 @@
 let parts = [];
+
 let currentMachine = {
+  chassis: null,
   motor: null
 };
 
@@ -16,8 +18,14 @@ function showPage(pageId){
 }
 
 async function loadParts(){
-  const response = await fetch("data/motors.json");
-  parts = await response.json();
+  const motorResponse = await fetch("data/motors.json");
+  const motors = await motorResponse.json();
+
+  const chassisResponse = await fetch("data/chassis.json");
+  const chassis = await chassisResponse.json();
+
+  parts = [...motors, ...chassis];
+
   renderParts(parts);
 }
 
@@ -52,28 +60,65 @@ function addToMachine(partId){
 
   if(!selectedPart) return;
 
-  currentMachine.motor = selectedPart;
+  if(selectedPart.category === "シャーシ"){
+    currentMachine.chassis = selectedPart;
+  }
+
+  if(selectedPart.category === "モーター"){
+    currentMachine.motor = selectedPart;
+  }
 
   renderMachine();
   showPage("machine");
 }
 
+function getSelectedParts(){
+  return Object.values(currentMachine).filter(part => part !== null);
+}
+
+function calculateAverage(key){
+  const selectedParts = getSelectedParts();
+
+  if(selectedParts.length === 0){
+    return 0;
+  }
+
+  const total = selectedParts.reduce((sum, part) => {
+    return sum + part[key];
+  }, 0);
+
+  return Math.round(total / selectedParts.length);
+}
+
+function calculateWeight(){
+  const selectedParts = getSelectedParts();
+
+  const total = selectedParts.reduce((sum, part) => {
+    return sum + part.weight;
+  }, 0);
+
+  return total.toFixed(1);
+}
+
 function renderMachine(){
+  const chassis = currentMachine.chassis;
   const motor = currentMachine.motor;
 
+  document.getElementById("machineChassis").textContent = chassis ? chassis.name : "未選択";
   document.getElementById("machineMotor").textContent = motor ? motor.name : "未選択";
-  document.getElementById("machineWeight").textContent = motor ? motor.weight.toFixed(1) : "0";
-  document.getElementById("machineSpeed").textContent = motor ? motor.speed : "0";
-  document.getElementById("machineAcceleration").textContent = motor ? motor.acceleration : "0";
-  document.getElementById("machineCorner").textContent = motor ? motor.corner : "0";
-  document.getElementById("machineBattery").textContent = motor ? motor.battery : "0";
+
+  document.getElementById("machineWeight").textContent = calculateWeight();
+  document.getElementById("machineSpeed").textContent = calculateAverage("speed");
+  document.getElementById("machineAcceleration").textContent = calculateAverage("acceleration");
+  document.getElementById("machineCorner").textContent = calculateAverage("corner");
+  document.getElementById("machineBattery").textContent = calculateAverage("battery");
 }
 
 document.getElementById("searchInput").addEventListener("input", e => {
   const keyword = e.target.value;
 
   const filtered = parts.filter(part => {
-    return part.name.includes(keyword);
+    return part.name.includes(keyword) || part.category.includes(keyword);
   });
 
   renderParts(filtered);
