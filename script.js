@@ -2,7 +2,14 @@ let parts = [];
 
 let currentMachine = {
   chassis: null,
-  motor: null
+  motor: null,
+  gear: null,
+  tire: null,
+  frontRoller: null,
+  rearRoller: null,
+  brake: null,
+  massDamper: null,
+  battery: null
 };
 
 function showPage(pageId){
@@ -24,7 +31,10 @@ async function loadParts(){
   const chassisResponse = await fetch("data/chassis.json");
   const chassis = await chassisResponse.json();
 
-  parts = [...motors, ...chassis];
+  const gearResponse = await fetch("data/gears.json");
+  const gears = await gearResponse.json();
+
+  parts = [...motors, ...chassis, ...gears];
 
   renderParts(parts);
 }
@@ -60,18 +70,27 @@ function addToMachine(partId){
 
   if(!selectedPart) return;
 
-  if(selectedPart.category === "シャーシ"){
-    currentMachine.chassis = selectedPart;
-  }
+  const categoryMap = {
+    "シャーシ": "chassis",
+    "モーター": "motor",
+    "ギヤ": "gear",
+    "タイヤ": "tire",
+    "フロントローラー": "frontRoller",
+    "リアローラー": "rearRoller",
+    "ブレーキ": "brake",
+    "マスダンパー": "massDamper",
+    "電池": "battery"
+  };
 
-  if(selectedPart.category === "モーター"){
-    currentMachine.motor = selectedPart;
+  const key = categoryMap[selectedPart.category];
+
+  if(key){
+    currentMachine[key] = selectedPart;
   }
 
   renderMachine();
   showPage("machine");
 }
-
 function getSelectedParts(){
   return Object.values(currentMachine).filter(part => part !== null);
 }
@@ -101,10 +120,11 @@ function calculateWeight(){
 }
 
 function renderMachine(){
-  const chassis = currentMachine.chassis;
-  const motor = currentMachine.motor;
+const chassis = currentMachine.chassis;
+const motor = currentMachine.motor;
+const gear = currentMachine.gear;
 
-  document.getElementById("machineChassis").textContent = chassis ? chassis.name : "未選択";
+  document.getElementById("machineGear").textContent = gear ? gear.name : "未選択";  document.getElementById("machineChassis").textContent = chassis ? chassis.name : "未選択";
   document.getElementById("machineMotor").textContent = motor ? motor.name : "未選択";
 
   document.getElementById("machineWeight").textContent = calculateWeight();

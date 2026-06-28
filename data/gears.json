@@ -1,0 +1,32 @@
+[
+  {
+    "id": "G001",
+    "name": "3.5:1 超速ギヤ",
+    "category": "ギヤ",
+    "weight": 2.8,
+    "speed": 92,
+    "acceleration": 78,
+    "corner": 80,
+    "battery": 68
+  },
+  {
+    "id": "G002",
+    "name": "3.7:1 ノーマルギヤ",
+    "category": "ギヤ",
+    "weight": 2.8,
+    "speed": 78,
+    "acceleration": 90,
+    "corner": 82,
+    "battery": 82
+  },
+  {
+    "id": "G003",
+    "name": "4.0:1 パワーギヤ",
+    "category": "ギヤ",
+    "weight": 2.8,
+    "speed": 70,
+    "acceleration": 95,
+    "corner": 84,
+    "battery": 88
+  }
+]
